@@ -167,14 +167,14 @@ public class IOServiceImpl implements IOService{
 
 	@Override
 	public boolean renameFile(String userId, String oldFileName, String newFileName) throws RemoteException {
-		try{
-			File toRename = new File("users/"+userId+"/"+oldFileName);
-			toRename.renameTo(new File("users/"+userId+"/"+newFileName));
-			toRename = new File("users/"+userId+"/"+newFileName+"/"+oldFileName);
-			toRename.renameTo(new File("users/"+userId+"/"+newFileName+"/"+newFileName));
+		File toRename = new File("users/"+userId+"/"+oldFileName);
+		boolean success1 = toRename.renameTo(new File("users/"+userId+"/"+newFileName));
+		toRename = new File("users/"+userId+"/"+newFileName+"/"+oldFileName);
+		boolean success2 = toRename.renameTo(new File("users/"+userId+"/"+newFileName+"/"+newFileName));
+		if(success1 && success2){
 			return true;
-		}catch(Exception e){
-			e.printStackTrace();
+		}
+		else{
 			return false;
 		}
 	}
