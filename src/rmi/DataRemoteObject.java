@@ -56,6 +56,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	}
 	
 	@Override
+	public boolean renameFile(String userId, String oldFileName, String newFileName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return iOService.renameFile(userId, oldFileName, newFileName);
+	}
+
+	@Override
 	public boolean login(String username, String password) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userService.login(username, password);
@@ -114,4 +120,5 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 		// TODO Auto-generated method stub
 		return executeService.isInfinite();
 	}
+
 }

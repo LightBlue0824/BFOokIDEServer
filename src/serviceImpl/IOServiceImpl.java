@@ -164,4 +164,18 @@ public class IOServiceImpl implements IOService{
 		}
 		return file.delete();
 	}
+
+	@Override
+	public boolean renameFile(String userId, String oldFileName, String newFileName) throws RemoteException {
+		try{
+			File toRename = new File("users/"+userId+"/"+oldFileName);
+			toRename.renameTo(new File("users/"+userId+"/"+newFileName));
+			toRename = new File("users/"+userId+"/"+newFileName+"/"+oldFileName);
+			toRename.renameTo(new File("users/"+userId+"/"+newFileName+"/"+newFileName));
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
